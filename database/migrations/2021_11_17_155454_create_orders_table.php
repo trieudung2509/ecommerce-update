@@ -39,7 +39,7 @@ class CreateOrdersTable extends Migration
             $table->dateTime('cancel_request_at')->nullable();
             $table->integer('payment_status_viewed')->default(1)->nullable();
             $table->integer('commission_calculated')->default(0);
-            $table->timestamp('commission_calculated')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('delivery_history_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamps();
         });
     }
