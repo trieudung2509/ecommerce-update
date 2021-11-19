@@ -20,12 +20,10 @@ class DatabaseSeeder extends Seeder
             'email_verified_at'    => date('Y-m-d H:i:s'),
             'password'    => Hash::make('123456'),
         ]);
-        DB::table('languages')->insert([
-            'name'    => 'English',
-            'code'    => 'en',
-            'rtl'    => '0',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
+        
+        $path = public_path('sql/sql-seed.sql');
+        $sql = file_get_contents($path);
+        DB::unprepared($sql);
+
     }
 }
