@@ -5,7 +5,7 @@
 	    <h5 class="mb-0 h5">{{translate('Edit Digital Product')}}</h5>
 	</div>
 	<div class="row">
-		<div class="col-lg-10 mx-auto">
+		<div class="col-lg-12 mx-auto">
 			<form class="form form-horizontal mar-top" action="{{route('digitalproducts.update', $product->id)}}" method="POST" enctype="multipart/form-data" id="choice_form">
 				<input name="_method" type="hidden" value="PATCH">
 				<input type="hidden" name="id" value="{{ $product->id }}">

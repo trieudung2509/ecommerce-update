@@ -23,19 +23,6 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-from-label"></label>
                     <div class="col-md-8">
-                        @if (addon_is_activated('pos_system'))
-                          <div class="row">
-                              <div class="col-md-10">
-                                  <label class="col-from-label">{{ translate('POS System') }}</label>
-                              </div>
-                              <div class="col-md-2">
-                                  <label class="aiz-switch aiz-switch-success mb-0">
-                                      <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="1">
-                                      <span class="slider round"></span>
-                                  </label>
-                              </div>
-                          </div>
-                        @endif
                         <div class="row">
                             <div class="col-md-10">
                                 <label class="col-from-label">{{ translate('Products') }}</label>
@@ -69,7 +56,7 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-md-10">
                                 <label class="col-from-label">{{ translate('Seller Orders') }}</label>
                             </div>
@@ -79,8 +66,8 @@
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                        </div>
-                        <div class="row">
+                        </div> -->
+                        <!-- <div class="row">
                             <div class="col-md-10">
                                 <label class="col-from-label">{{ translate('Pick-up Point Order') }}</label>
                             </div>
@@ -90,20 +77,7 @@
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                        </div>
-                        @if (addon_is_activated('refund_request'))
-                          <div class="row">
-                              <div class="col-md-10">
-                                  <label class="col-from-label">{{ translate('Refunds') }}</label>
-                              </div>
-                              <div class="col-md-2">
-                                  <label class="aiz-switch aiz-switch-success mb-0">
-                                      <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="7">
-                                      <span class="slider round"></span>
-                                  </label>
-                              </div>
-                          </div>
-                        @endif
+                        </div> -->
                         <div class="row">
                             <div class="col-md-10">
                                 <label class="col-from-label">{{ translate('Customers') }}</label>
@@ -115,7 +89,7 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-md-10">
                                 <label class="col-from-label">{{ translate('Sellers') }}</label>
                             </div>
@@ -125,7 +99,7 @@
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row">
                             <div class="col-md-10">
                                 <label class="col-from-label">{{ translate('Reports') }}</label>
@@ -144,17 +118,6 @@
                             <div class="col-md-2">
                                 <label class="aiz-switch aiz-switch-success mb-0">
                                     <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="11">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-10">
-                                <label class="col-from-label">{{ translate('Support') }}</label>
-                            </div>
-                            <div class="col-md-2">
-                                <label class="aiz-switch aiz-switch-success mb-0">
-                                    <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="12">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -181,71 +144,7 @@
                                 </label>
                             </div>
                         </div>
-                        @if (addon_is_activated('affiliate_system'))
-                          <div class="row">
-                              <div class="col-md-10">
-                                  <label class="col-from-label">{{ translate('Affiliate System') }}</label>
-                              </div>
-                              <div class="col-md-2">
-                                  <label class="aiz-switch aiz-switch-success mb-0">
-                                      <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="15">
-                                      <span class="slider round"></span>
-                                  </label>
-                              </div>
-                          </div>
-                        @endif
-                        @if (addon_is_activated('offline_payment'))
-                          <div class="row">
-                              <div class="col-md-10">
-                                  <label class="col-from-label">{{ translate('Offline Payment System') }}</label>
-                              </div>
-                              <div class="col-md-2">
-                                  <label class="aiz-switch aiz-switch-success mb-0">
-                                      <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="16">
-                                      <span class="slider round"></span>
-                                  </label>
-                              </div>
-                          </div>
-                        @endif
-                        @if (addon_is_activated('paytm'))
-                          <div class="row">
-                              <div class="col-md-10">
-                                  <label class="col-from-label">{{ translate('Paytm Payment Gateway') }}</label>
-                              </div>
-                              <div class="col-md-2">
-                                  <label class="aiz-switch aiz-switch-success mb-0">
-                                      <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="17">
-                                      <span class="slider round"></span>
-                                  </label>
-                              </div>
-                          </div>
-                        @endif
-                        @if (addon_is_activated('club_point'))
-                          <div class="row">
-                              <div class="col-md-10">
-                                  <label class="col-from-label">{{ translate('Club Point System') }}</label>
-                              </div>
-                              <div class="col-md-2">
-                                  <label class="aiz-switch aiz-switch-success mb-0">
-                                      <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="18">
-                                      <span class="slider round"></span>
-                                  </label>
-                              </div>
-                          </div>
-                        @endif
-                        @if (addon_is_activated('otp_system'))
-                          <div class="row">
-                              <div class="col-md-10">
-                                  <label class="col-from-label">{{ translate('OTP System') }}</label>
-                              </div>
-                              <div class="col-md-2">
-                                  <label class="aiz-switch aiz-switch-success mb-0">
-                                      <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="19">
-                                      <span class="slider round"></span>
-                                  </label>
-                              </div>
-                          </div>
-                        @endif
+                 
                         <div class="row">
                             <div class="col-md-10">
                                 <label class="col-from-label">{{ translate('Staffs') }}</label>
@@ -257,17 +156,7 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-10">
-                                <label class="col-from-label">{{ translate('Addon Manager') }}</label>
-                            </div>
-                            <div class="col-md-2">
-                                <label class="aiz-switch aiz-switch-success mb-0">
-                                    <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="21">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
+                        
                         <div class="row">
                             <div class="col-md-10">
                                 <label class="col-from-label">{{ translate('Uploaded Files') }}</label>
@@ -286,17 +175,6 @@
                             <div class="col-md-2">
                                 <label class="aiz-switch aiz-switch-success mb-0">
                                     <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="23">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-10">
-                                <label class="col-from-label">{{ translate('System') }}</label>
-                            </div>
-                            <div class="col-md-2">
-                                <label class="aiz-switch aiz-switch-success mb-0">
-                                    <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="24">
                                     <span class="slider round"></span>
                                 </label>
                             </div>

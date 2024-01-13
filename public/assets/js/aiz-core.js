@@ -886,58 +886,58 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                 }
             });
         },
-        textEditor: function () {
-            $(".aiz-text-editor").each(function (el) {
-                var $this = $(this);
-                var buttons = $this.data("buttons");
-                var minHeight = $this.data("min-height");
-                var placeholder = $this.attr("placeholder");
-                var format = $this.data("format");
+        // textEditor: function () {
+        //     $(".aiz-text-editor").each(function (el) {
+        //         var $this = $(this);
+        //         var buttons = $this.data("buttons");
+        //         var minHeight = $this.data("min-height");
+        //         var placeholder = $this.attr("placeholder");
+        //         var format = $this.data("format");
 
-                buttons = !buttons
-                    ? [
-                          ["font", ["bold", "underline", "italic", "clear"]],
-                          ["para", ["ul", "ol", "paragraph"]],
-                          ["style", ["style"]],
-                          ["color", ["color"]],
-                          ["table", ["table"]],
-                          ["insert", ["link", "picture", "video"]],
-                          ["view", ["fullscreen", "undo", "redo"]],
-                      ]
-                    : buttons;
-                placeholder = !placeholder ? "" : placeholder;
-                minHeight = !minHeight ? 200 : minHeight;
-                format = (typeof format == 'undefined') ? false : format;
+        //         buttons = !buttons
+        //             ? [
+        //                   ["font", ["bold", "underline", "italic", "clear"]],
+        //                   ["para", ["ul", "ol", "paragraph"]],
+        //                   ["style", ["style"]],
+        //                   ["color", ["color"]],
+        //                   ["table", ["table"]],
+        //                   ["insert", ["link", "picture", "video"]],
+        //                   ["view", ["fullscreen", "undo", "redo"]],
+        //               ]
+        //             : buttons;
+        //         placeholder = !placeholder ? "" : placeholder;
+        //         minHeight = !minHeight ? 200 : minHeight;
+        //         format = (typeof format == 'undefined') ? false : format;
 
-                $this.summernote({
-                    toolbar: buttons,
-                    placeholder: placeholder,
-                    height: minHeight,
-                    callbacks: {
-                        onImageUpload: function (data) {
-                            data.pop();
-                        },
-                        onPaste: function (e) {
-                            if(format){
-                                var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
-                                e.preventDefault();
-                                document.execCommand('insertText', false, bufferText);
-                            }
-                        }
-                    }
-                });
+        //         $this.summernote({
+        //             toolbar: buttons,
+        //             placeholder: placeholder,
+        //             height: minHeight,
+        //             callbacks: {
+        //                 onImageUpload: function (data) {
+        //                     data.pop();
+        //                 },
+        //                 onPaste: function (e) {
+        //                     if(format){
+        //                         var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+        //                         e.preventDefault();
+        //                         document.execCommand('insertText', false, bufferText);
+        //                     }
+        //                 }
+        //             }
+        //         });
 
-                var nativeHtmlBuilderFunc = $this.summernote('module', 'videoDialog').createVideoNode;
+        //         var nativeHtmlBuilderFunc = $this.summernote('module', 'videoDialog').createVideoNode;
 
-                $this.summernote('module', 'videoDialog').createVideoNode =  function(url) 
-                {   
-                    var wrap = $('<div class="embed-responsive embed-responsive-16by9"></div>');
-                    var html = nativeHtmlBuilderFunc(url);
-                        html = $(html).addClass('embed-responsive-item');
-                    return wrap.append(html)[0];
-                };
-            });
-        },
+        //         $this.summernote('module', 'videoDialog').createVideoNode =  function(url) 
+        //         {   
+        //             var wrap = $('<div class="embed-responsive embed-responsive-16by9"></div>');
+        //             var html = nativeHtmlBuilderFunc(url);
+        //                 html = $(html).addClass('embed-responsive-item');
+        //             return wrap.append(html)[0];
+        //         };
+        //     });
+        // },
         dateRange: function () {
             $(".aiz-date-range").each(function () {
                 var $this = $(this);
@@ -1861,7 +1861,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
     AIZ.plugins.metismenu();
     AIZ.plugins.bootstrapSelect();
     AIZ.plugins.tagify();
-    AIZ.plugins.textEditor();
+    // AIZ.plugins.textEditor();
     AIZ.plugins.tooltip();
     AIZ.plugins.countDown();
     AIZ.plugins.dateRange();

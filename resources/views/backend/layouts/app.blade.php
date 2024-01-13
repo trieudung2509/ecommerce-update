@@ -22,15 +22,17 @@
 
 	<!-- aiz core css -->
 	<link rel="stylesheet" href="{{ static_asset('assets/css/vendors.css') }}">
-    @if(\App\Language::where('code', Session::get('locale', Config::get('app.locale')))->first()->rtl == 1)
-    <link rel="stylesheet" href="{{ static_asset('assets/css/bootstrap-rtl.min.css') }}">
-    @endif
+	<link rel="stylesheet" href="{{ static_asset('assets/richtexteditor/rte_theme_default.css') }}" />
 	<link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css') }}">
 
     <style>
         body {
             font-size: 12px;
         }
+		.rte-modern.rte-desktop.rte-toolbar-default {
+			min-width: auto !important;
+			z-index: 1;
+		}
     </style>
 	<script>
     	var AIZ = AIZ || {};
@@ -78,6 +80,8 @@
 
     @yield('modal')
 
+	<script type="text/javascript" src="{{ static_asset('assets/richtexteditor/rte.js') }}"></script>
+    <script type="text/javascript" src="{{ static_asset('assets/richtexteditor/plugins/all_plugins.js') }}"></script>
 
 	<script src="{{ static_asset('assets/js/vendors.js') }}" ></script>
 	<script src="{{ static_asset('assets/js/aiz-core.js') }}" ></script>
@@ -85,6 +89,10 @@
     @yield('script')
 
     <script type="text/javascript">
+
+		var editor1 = new RichTextEditor(".aiz-text-editor");
+	    //editor1.setHTMLCode("Use inline HTML or setHTMLCode to init the default content.");
+
 	    @foreach (session('flash_notification', collect())->toArray() as $message)
 	        AIZ.plugins.notify('{{ $message['level'] }}', '{{ $message['message'] }}');
 	    @endforeach
