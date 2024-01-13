@@ -43,7 +43,7 @@
                                     <span class="aiz-side-nav-text">{{ translate('All Products') }}</span>
                                 </a>
                             </li>
-                            <li class="aiz-side-nav-item">
+                            <!-- <li class="aiz-side-nav-item">
                                 <a href="{{route('products.admin')}}" class="aiz-side-nav-link {{ areActiveRoutes(['products.admin', 'products.create', 'products.admin.edit']) }}" >
                                     <span class="aiz-side-nav-text">{{ translate('In House Products') }}</span>
                                 </a>
@@ -52,8 +52,8 @@
                                 <a href="{{route('digitalproducts.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['digitalproducts.index', 'digitalproducts.create', 'digitalproducts.edit']) }}">
                                     <span class="aiz-side-nav-text">{{ translate('Digital Products') }}</span>
                                 </a>
-                            </li>
-                            <li class="aiz-side-nav-item">
+                            </li> -->
+                            <!-- <li class="aiz-side-nav-item">
                                 <a href="{{ route('product_bulk_upload.index') }}" class="aiz-side-nav-link" >
                                     <span class="aiz-side-nav-text">{{ translate('Bulk Import') }}</span>
                                 </a>
@@ -62,13 +62,13 @@
                                 <a href="{{route('product_bulk_export.index')}}" class="aiz-side-nav-link">
                                     <span class="aiz-side-nav-text">{{translate('Bulk Export')}}</span>
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="aiz-side-nav-item">
                                 <a href="{{route('categories.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['categories.index', 'categories.create', 'categories.edit'])}}">
                                     <span class="aiz-side-nav-text">{{translate('Category')}}</span>
                                 </a>
                             </li>
-                            <li class="aiz-side-nav-item">
+                            <!-- <li class="aiz-side-nav-item">
                                 <a href="{{route('brands.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['brands.index', 'brands.create', 'brands.edit'])}}" >
                                     <span class="aiz-side-nav-text">{{translate('Brand')}}</span>
                                 </a>
@@ -82,7 +82,7 @@
                                 <a href="{{route('colors')}}" class="aiz-side-nav-link {{ areActiveRoutes(['attributes.index','attributes.create','attributes.edit'])}}">
                                     <span class="aiz-side-nav-text">{{translate('Colors')}}</span>
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="aiz-side-nav-item">
                                 <a href="{{route('reviews.index')}}" class="aiz-side-nav-link">
                                     <span class="aiz-side-nav-text">{{translate('Product Reviews')}}</span>
@@ -93,7 +93,7 @@
                 @endif
 
             <!-- Sale -->
-                <li class="aiz-side-nav-item">
+                <!-- <li class="aiz-side-nav-item">
                     <a href="#" class="aiz-side-nav-link">
                         <i class="las la-money-bill aiz-side-nav-icon"></i>
                         <span class="aiz-side-nav-text">{{translate('Sales')}}</span>
@@ -124,7 +124,7 @@
                             </li>
                         @endif
                     </ul>
-                </li>
+                <!-- </li>  -->
 
             <!-- Customers -->
                 @if(Auth::user()->user_type == 'admin' || in_array('8', json_decode(Auth::user()->staff->role->permissions)))
@@ -165,7 +165,7 @@
                     </li>
                 @endif
             <!-- Reports -->
-                @if(Auth::user()->user_type == 'admin' || in_array('10', json_decode(Auth::user()->staff->role->permissions)))
+                <!-- @if(Auth::user()->user_type == 'admin' || in_array('10', json_decode(Auth::user()->staff->role->permissions)))
                     <li class="aiz-side-nav-item">
                         <a href="#" class="aiz-side-nav-link">
                             <i class="las la-file-alt aiz-side-nav-icon"></i>
@@ -200,7 +200,8 @@
                             </li>
                         </ul>
                     </li>
-                @endif
+                @endif -->
+
                 @if(Auth::user()->user_type == 'admin' || in_array('23', json_decode(Auth::user()->staff->role->permissions)))
                 <!--Blog System-->
                     <li class="aiz-side-nav-item">
@@ -324,17 +325,17 @@
                                     <span class="aiz-side-nav-text">{{translate('Languages')}}</span>
                                 </a>
                             </li>
-
+                            <!-- 
                             <li class="aiz-side-nav-item">
                                 <a href="{{route('currency.index')}}" class="aiz-side-nav-link">
                                     <span class="aiz-side-nav-text">{{translate('Currency')}}</span>
                                 </a>
-                            </li>
-                            <li class="aiz-side-nav-item">
+                            </li> -->
+                            <!-- <li class="aiz-side-nav-item">
                                 <a href="{{route('tax.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['tax.index', 'tax.create', 'tax.store', 'tax.show', 'tax.edit'])}}">
                                     <span class="aiz-side-nav-text">{{translate('Vat & TAX')}}</span>
                                 </a>
-                            </li>
+                            </li> -->
                             <!-- <li class="aiz-side-nav-item">
                                 <a href="{{route('pick_up_points.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['pick_up_points.index','pick_up_points.create','pick_up_points.edit'])}}">
                                     <span class="aiz-side-nav-text">{{translate('Pickup point')}}</span>
@@ -345,11 +346,11 @@
                                     <span class="aiz-side-nav-text">{{translate('SMTP Settings')}}</span>
                                 </a>
                             </li>
-                            <li class="aiz-side-nav-item">
+                            <!-- <li class="aiz-side-nav-item">
                                 <a href="{{ route('payment_method.index') }}" class="aiz-side-nav-link">
                                     <span class="aiz-side-nav-text">{{translate('Payment Methods')}}</span>
                                 </a>
-                            </li>
+                            </li> -->
                            
                             <li class="aiz-side-nav-item">
                                 <a href="{{ route('social_login.index') }}" class="aiz-side-nav-link">
@@ -357,7 +358,7 @@
                                 </a>
                             </li>
 
-                            <li class="aiz-side-nav-item">
+                            <!-- <li class="aiz-side-nav-item">
                                 <a href="javascript:void(0);" class="aiz-side-nav-link">
                                     <span class="aiz-side-nav-text">{{translate('Shipping')}}</span>
                                     <span class="aiz-side-nav-arrow"></span>
@@ -369,7 +370,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
 
                         </ul>
                     </li>
