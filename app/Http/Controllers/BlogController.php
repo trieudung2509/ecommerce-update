@@ -141,6 +141,14 @@ class BlogController extends Controller
         return 1;
     }
 
+    public function change_home(Request $request) {
+        $blog = Blog::find($request->id);
+        $blog->is_home = $request->is_home;
+        
+        $blog->save();
+        return 1;
+    }
+
     /**
      * Remove the specified resource from storage.
      *

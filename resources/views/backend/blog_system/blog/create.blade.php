@@ -12,20 +12,20 @@
                 <form id="add_form" class="form-horizontal" action="{{ route('blog.store') }}" method="POST">
                     @csrf
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label">
+                        <label class="col-md-2 col-form-label">
                             {{translate('Blog Title')}}
                             <span class="text-danger">*</span>
                         </label>
-                        <div class="col-md-9">
+                        <div class="col-md-10">
                             <input type="text" placeholder="{{translate('Blog Title')}}" onkeyup="makeSlug(this.value)" id="title" name="title" class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group row" id="category">
-                        <label class="col-md-3 col-from-label">
+                        <label class="col-md-2 col-from-label">
                             {{translate('Category')}} 
                             <span class="text-danger">*</span>
                         </label>
-                        <div class="col-md-9">
+                        <div class="col-md-10">
                             <select class="form-control aiz-selectpicker" name="category_id" id="category_id" data-live-search="true" required>
                                 <option>--</option>
                                 @foreach ($blog_categories as $category)
@@ -39,19 +39,19 @@
                     
                     
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label">{{translate('Slug')}}
+                        <label class="col-md-2 col-form-label">{{translate('Slug')}}
                             <span class="text-danger">*</span></label>
-                        <div class="col-md-9">
+                        <div class="col-md-10">
                             <input type="text" placeholder="{{translate('Slug')}}" name="slug" id="slug" class="form-control" required>
                         </div>
                     </div>
                     
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="signinSrEmail">
+                        <label class="col-md-2 col-form-label" for="signinSrEmail">
                             {{translate('Banner')}} 
                             <small>(1300x650)</small>
                         </label>
-                        <div class="col-md-9">
+                        <div class="col-md-10">
                             <div class="input-group" data-toggle="aizuploader" data-type="image">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-soft-secondary font-weight-medium">
@@ -67,37 +67,37 @@
                     </div>
                     
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label">
+                        <label class="col-md-2 col-form-label">
                             {{translate('Short Description')}}
                             <span class="text-danger">*</span>
                         </label>
-                        <div class="col-md-9">
+                        <div class="col-md-10">
                             <textarea name="short_description" rows="5" class="form-control" required=""></textarea>
                         </div>
                     </div>
                     
                     <div class="form-group row">
-                        <label class="col-md-3 col-from-label">
+                        <label class="col-md-2 col-from-label">
                             {{translate('Description')}}
                         </label>
-                        <div class="col-md-9">
+                        <div class="col-md-10">
                             <textarea class="aiz-text-editor" name="description"></textarea>
                         </div>
                     </div>
                     
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label">{{translate('Meta Title')}}</label>
-                        <div class="col-md-9">
+                        <label class="col-md-2 col-form-label">{{translate('Meta Title')}}</label>
+                        <div class="col-md-10">
                             <input type="text" class="form-control" name="meta_title" placeholder="{{translate('Meta Title')}}">
                         </div>
                     </div>
                     
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="signinSrEmail">
+                        <label class="col-md-2 col-form-label" for="signinSrEmail">
                             {{translate('Meta Image')}} 
                             <small>(200x200)+</small>
                         </label>
-                        <div class="col-md-9">
+                        <div class="col-md-10">
                             <div class="input-group" data-toggle="aizuploader" data-type="image">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-soft-secondary font-weight-medium">
@@ -113,17 +113,17 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label">{{translate('Meta Description')}}</label>
-                        <div class="col-md-9">
+                        <label class="col-md-2 col-form-label">{{translate('Meta Description')}}</label>
+                        <div class="col-md-10">
                             <textarea name="meta_description" rows="5" class="form-control"></textarea>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label">
+                        <label class="col-md-2 col-form-label">
                             {{translate('Meta Keywords')}}
                         </label>
-                        <div class="col-md-9">
+                        <div class="col-md-10">
                             <input type="text" class="form-control" id="meta_keywords" name="meta_keywords" placeholder="{{translate('Meta Keywords')}}">
                         </div>
                     </div>

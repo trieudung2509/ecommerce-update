@@ -39,6 +39,7 @@
                         <th data-breakpoints="lg">{{translate('Category')}}</th>
                         <th data-breakpoints="lg">{{translate('Short Description')}}</th>
                         <th data-breakpoints="lg">{{translate('Status')}}</th>
+                        <th data-breakpoints="lg">{{translate('Is Home')}}</th>
                         <th class="text-right">{{translate('Options')}}</th>
                     </tr>
                 </thead>
@@ -64,6 +65,12 @@
                         <td>
                             <label class="aiz-switch aiz-switch-success mb-0">
                                 <input type="checkbox" onchange="change_status(this)" value="{{ $blog->id }}" <?php if($blog->status == 1) echo "checked";?>>
+                                <span></span>
+                            </label>
+                        </td>
+                        <td>
+                            <label class="aiz-switch aiz-switch-success mb-0">
+                                <input type="checkbox" onchange="change_home(this)" value="{{ $blog->id }}" <?php if($blog->is_home == 1) echo "checked";?>>
                                 <span></span>
                             </label>
                         </td>
@@ -104,6 +111,21 @@
             $.post('{{ route('blog.change-status') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
                     AIZ.plugins.notify('success', '{{ translate('Change blog status successfully') }}');
+                }
+                else{
+                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                }
+            });
+        }
+
+        function change_home(el) {
+            var is_home = 0;
+            if(el.checked){
+                var is_home = 1;
+            }
+            $.post('{{ route('blog.change-home') }}', {_token:'{{ csrf_token() }}', id:el.value, is_home:is_home}, function(data){
+                if(data == 1){
+                    AIZ.plugins.notify('success', '{{ translate('Change blog show home page successfully') }}');
                 }
                 else{
                     AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');

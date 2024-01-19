@@ -90,6 +90,7 @@
                         </th>
                         <!--<th data-breakpoints="lg">#</th>-->
                         <th>{{translate('Name')}}</th>
+                        <th>{{translate('Code')}}</th>
                         @if($type == 'Seller' || $type == 'All')
                             <th data-breakpoints="lg">{{translate('Added By')}}</th>
                         @endif
@@ -125,6 +126,9 @@
                                     <span class="text-muted text-truncate-2">{{ $product->getTranslation('name') }}</span>
                                 </div>
                             </div>
+                        </td>
+                        <td>
+                            <span>{{ $product->uid_code; }}</span>
                         </td>
                         @if($type == 'Seller' || $type == 'All')
                             <td>{{ $product->user->name }}</td>

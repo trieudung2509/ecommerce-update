@@ -156,8 +156,9 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $refund_request_addon = \App\Addon::where('unique_identifier', 'refund_request')->first();
-
+        $random_code_product = Str::random(10);
         $product = new Product;
+        $product->uid_code = $random_code_product;
         $product->name = $request->name;
         $product->added_by = $request->added_by;
         if (Auth::user()->user_type == 'seller') {

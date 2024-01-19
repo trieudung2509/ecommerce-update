@@ -224,54 +224,6 @@
                         </ul>
                     </li>
                 @endif
-
-            <!-- marketing -->
-                @if(Auth::user()->user_type == 'admin' || in_array('11', json_decode(Auth::user()->staff->role->permissions)))
-                    <li class="aiz-side-nav-item">
-                        <a href="#" class="aiz-side-nav-link">
-                            <i class="las la-bullhorn aiz-side-nav-icon"></i>
-                            <span class="aiz-side-nav-text">{{ translate('Marketing') }}</span>
-                            <span class="aiz-side-nav-arrow"></span>
-                        </a>
-                        <ul class="aiz-side-nav-list level-2">
-                            @if(Auth::user()->user_type == 'admin' || in_array('2', json_decode(Auth::user()->staff->role->permissions)))
-                                <li class="aiz-side-nav-item">
-                                    <a href="{{ route('flash_deals.index') }}" class="aiz-side-nav-link {{ areActiveRoutes(['flash_deals.index', 'flash_deals.create', 'flash_deals.edit'])}}">
-                                        <span class="aiz-side-nav-text">{{ translate('Flash deals') }}</span>
-                                    </a>
-                                </li>
-                            @endif
-                            @if(Auth::user()->user_type == 'admin' || in_array('7', json_decode(Auth::user()->staff->role->permissions)))
-                                <li class="aiz-side-nav-item">
-                                    <a href="{{route('newsletters.index')}}" class="aiz-side-nav-link">
-                                        <span class="aiz-side-nav-text">{{ translate('Newsletters') }}</span>
-                                    </a>
-                                </li>
-                                @if (addon_is_activated('otp_system'))
-                                    <li class="aiz-side-nav-item">
-                                        <a href="{{route('sms.index')}}" class="aiz-side-nav-link">
-                                            <span class="aiz-side-nav-text">{{ translate('Bulk SMS') }}</span>
-                                            @if (env("DEMO_MODE") == "On")
-                                                <span class="badge badge-inline badge-danger">Addon</span>
-                                            @endif
-                                        </a>
-                                    </li>
-                                @endif
-                            @endif
-                            <li class="aiz-side-nav-item">
-                                <a href="{{ route('subscribers.index') }}" class="aiz-side-nav-link">
-                                    <span class="aiz-side-nav-text">{{ translate('Subscribers') }}</span>
-                                </a>
-                            </li>
-                            <li class="aiz-side-nav-item">
-                                <a href="{{route('coupon.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['coupon.index','coupon.create','coupon.edit'])}}">
-                                    <span class="aiz-side-nav-text">{{ translate('Coupon') }}</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                @endif
-
             <!-- Website Setup -->
                 @if(Auth::user()->user_type == 'admin' || in_array('13', json_decode(Auth::user()->staff->role->permissions)))
                     <li class="aiz-side-nav-item">

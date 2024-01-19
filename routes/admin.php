@@ -173,6 +173,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
     Route::resource('blog', 'BlogController');
     Route::get('/blog/destroy/{id}', 'BlogController@destroy')->name('blog.destroy');
     Route::post('/blog/change-status', 'BlogController@change_status')->name('blog.change-status');
+    Route::post('/blog/change-home', 'BlogController@change_home')->name('blog.change-home');
 
     //Coupons
     Route::resource('coupon', 'CouponController');

@@ -15,6 +15,7 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string("uid_code", 200);
             $table->string('name', 200);
             $table->string('added_by', 6)->default('admin');
             $table->integer('user_id');
