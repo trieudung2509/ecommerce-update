@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Blog;
 
 class HomeController extends Controller
 {
@@ -22,6 +23,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('frontend.index');
+        $blogs = Blog::where([
+            ['status', '=', '1'],
+            ['is_home', '=', '1'],
+        ])->orderBy('created_at', 'desc')->limit(3)->get();
+        return view('frontend.index', compact('blogs'));
     }
 }

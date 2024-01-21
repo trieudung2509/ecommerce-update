@@ -155,37 +155,21 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $refund_request_addon = \App\Addon::where('unique_identifier', 'refund_request')->first();
-        $random_code_product = Str::random(10);
+        $random_code_product = Str::random(5);
         $product = new Product;
-        $product->uid_code = $random_code_product;
+        $product->uid_code = 'DungBeta_'.$random_code_product;
         $product->name = $request->name;
         $product->added_by = $request->added_by;
-        if (Auth::user()->user_type == 'seller') {
-            $product->user_id = Auth::user()->id;
-            if (get_setting('product_approve_by_admin') == 1) {
-                $product->approved = 0;
-            }
-        } else {
-            $product->user_id = \App\User::where('user_type', 'admin')->first()->id;
-        }
+        $product->user_id = \App\User::where('user_type', 'admin')->first()->id;
         $product->category_id = $request->category_id;
-        $product->brand_id = $request->brand_id;
         $product->barcode = $request->barcode;
 
-        if ($refund_request_addon != null && $refund_request_addon->activated == 1) {
-            if ($request->refundable != null) {
-                $product->refundable = 1;
-            } else {
-                $product->refundable = 0;
-            }
-        }
         $product->photos = $request->photos;
         $product->thumbnail_img = $request->thumbnail_img;
         $product->unit = $request->unit;
-        $product->min_qty = $request->min_qty;
+        $product->min_qty = 1;
         $product->low_stock_quantity = $request->low_stock_quantity;
-        $product->stock_visibility_state = $request->stock_visibility_state;
+        $product->stock_visibility_state = 'quantity';
         $product->external_link = $request->external_link;
 
         $tags = array();
@@ -199,7 +183,7 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->video_provider = $request->video_provider;
         $product->video_link = $request->video_link;
-        $product->unit_price = $request->unit_price;
+        $product->unit_price = 0.00;
         $product->discount = $request->discount;
         $product->discount_type = $request->discount_type;
 
@@ -259,7 +243,7 @@ class ProductController extends Controller
             $product->pdf = $request->pdf->store('uploads/products/pdf');
         }
 
-        $product->slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->name));
+        $product->slug = get_slugify($request->name);
 
         if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
             $product->colors = json_encode($request->colors);
@@ -318,25 +302,6 @@ class ProductController extends Controller
 
         $product->save();
 
-        //VAT & Tax
-        if ($request->tax_id) {
-            foreach ($request->tax_id as $key => $val) {
-                $product_tax = new ProductTax;
-                $product_tax->tax_id = $val;
-                $product_tax->product_id = $product->id;
-                $product_tax->tax = $request->tax[$key];
-                $product_tax->tax_type = $request->tax_type[$key];
-                $product_tax->save();
-            }
-        }
-        //Flash Deal
-        if ($request->flash_deal_id) {
-            $flash_deal_product = new FlashDealProduct;
-            $flash_deal_product->flash_deal_id = $request->flash_deal_id;
-            $flash_deal_product->product_id = $product->id;
-            $flash_deal_product->save();
-        }
-
         //combinations start
         $options = array();
         if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
@@ -380,9 +345,9 @@ class ProductController extends Controller
                 }
 
                 $product_stock->variant = $str;
-                $product_stock->price = $request['price_' . str_replace('.', '_', $str)];
+                $product_stock->price = 0.00;
                 $product_stock->sku = $request['sku_' . str_replace('.', '_', $str)];
-                $product_stock->qty = $request['qty_' . str_replace('.', '_', $str)];
+                $product_stock->qty = 0;
                 $product_stock->image = $request['img_' . str_replace('.', '_', $str)];
                 $product_stock->save();
             }
@@ -390,9 +355,9 @@ class ProductController extends Controller
             $product_stock              = new ProductStock;
             $product_stock->product_id  = $product->id;
             $product_stock->variant     = '';
-            $product_stock->price       = $request->unit_price;
+            $product_stock->price       = 0.00;
             $product_stock->sku         = $request->sku;
-            $product_stock->qty         = $request->current_stock;
+            $product_stock->qty         = 0;
             $product_stock->save();
         }
         //combinations end
@@ -483,7 +448,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $refund_request_addon       = \App\Addon::where('unique_identifier', 'refund_request')->first();
         $product                    = Product::findOrFail($id);
         $product->category_id       = $request->category_id;
         $product->brand_id          = $request->brand_id;
@@ -493,26 +457,18 @@ class ProductController extends Controller
         $product->todays_deal = 0;
         $product->is_quantity_multiplied = 0;
 
-        if ($refund_request_addon != null && $refund_request_addon->activated == 1) {
-            if ($request->refundable != null) {
-                $product->refundable = 1;
-            } else {
-                $product->refundable = 0;
-            }
-        }
-
         if ($request->lang == env("DEFAULT_LANGUAGE")) {
             $product->name          = $request->name;
             $product->unit          = $request->unit;
             $product->description   = $request->description;
             $product->slug          = strtolower($request->slug);
         }
-
+        $product->slug = get_slugify($request->name);
         $product->photos                 = $request->photos;
         $product->thumbnail_img          = $request->thumbnail_img;
-        $product->min_qty                = $request->min_qty;
+        $product->min_qty                = 1;
         $product->low_stock_quantity     = $request->low_stock_quantity;
-        $product->stock_visibility_state = $request->stock_visibility_state;
+        $product->stock_visibility_state = 'quantity';
         $product->external_link = $request->external_link;
 
         $tags = array();
@@ -537,25 +493,6 @@ class ProductController extends Controller
 
         $product->shipping_type  = $request->shipping_type;
         $product->est_shipping_days  = $request->est_shipping_days;
-
-        if (
-            \App\Addon::where('unique_identifier', 'club_point')->first() != null &&
-            \App\Addon::where('unique_identifier', 'club_point')->first()->activated
-        ) {
-            if ($request->earn_point) {
-                $product->earn_point = $request->earn_point;
-            }
-        }
-
-        if ($request->has('shipping_type')) {
-            if ($request->shipping_type == 'free') {
-                $product->shipping_cost = 0;
-            } elseif ($request->shipping_type == 'flat_rate') {
-                $product->shipping_cost = $request->flat_shipping_cost;
-            } elseif ($request->shipping_type == 'product_wise') {
-                $product->shipping_cost = json_encode($request->shipping_cost);
-            }
-        }
 
         if ($request->has('is_quantity_multiplied')) {
             $product->is_quantity_multiplied = 1;
@@ -684,45 +621,13 @@ class ProductController extends Controller
             $product_stock              = new ProductStock;
             $product_stock->product_id  = $product->id;
             $product_stock->variant     = '';
-            $product_stock->price       = $request->unit_price;
+            $product_stock->price       = 0.00;
             $product_stock->sku         = $request->sku;
-            $product_stock->qty         = $request->current_stock;
+            $product_stock->qty         = 0;
             $product_stock->save();
         }
 
         $product->save();
-
-        //Flash Deal
-        if ($request->flash_deal_id) {
-            if ($product->flash_deal_product) {
-                $flash_deal_product = FlashDealProduct::findOrFail($product->flash_deal_product->id);
-                if (!$flash_deal_product) {
-                    $flash_deal_product = new FlashDealProduct;
-                }
-            } else {
-                $flash_deal_product = new FlashDealProduct;
-            }
-
-            $flash_deal_product->flash_deal_id = $request->flash_deal_id;
-            $flash_deal_product->product_id = $product->id;
-            $flash_deal_product->discount = $request->flash_discount;
-            $flash_deal_product->discount_type = $request->flash_discount_type;
-            $flash_deal_product->save();
-            //            dd($flash_deal_product);
-        }
-
-        //VAT & Tax
-        if ($request->tax_id) {
-            ProductTax::where('product_id', $product->id)->delete();
-            foreach ($request->tax_id as $key => $val) {
-                $product_tax = new ProductTax;
-                $product_tax->tax_id = $val;
-                $product_tax->product_id = $product->id;
-                $product_tax->tax = $request->tax[$key];
-                $product_tax->tax_type = $request->tax_type[$key];
-                $product_tax->save();
-            }
-        }
 
         // Product Translations
         $product_translation                = ProductTranslation::firstOrNew(['lang' => $request->lang, 'product_id' => $product->id]);
