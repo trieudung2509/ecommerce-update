@@ -112,3 +112,10 @@ header .navbar-brand b,
 .arshia-dark .header nav a:hover {
   color: #0c9b7e !important;
 }
+
+.text-wrap {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}

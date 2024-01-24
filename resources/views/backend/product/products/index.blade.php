@@ -7,13 +7,11 @@
         <div class="col-auto">
             <h1 class="h3">{{translate('All products')}}</h1>
         </div>
-        @if($type != 'Seller')
         <div class="col text-right">
             <a href="{{ route('products.create') }}" class="btn btn-circle btn-info">
                 <span>{{translate('Add New Product')}}</span>
             </a>
         </div>
-        @endif
     </div>
 </div>
 <br>
@@ -34,28 +32,6 @@
                 </div>
             </div>
             
-            @if($type == 'Seller')
-            <div class="col-md-2 ml-auto">
-                <select class="form-control form-control-sm aiz-selectpicker mb-2 mb-md-0" id="user_id" name="user_id" onchange="sort_products()">
-                    <option value="">{{ translate('All Sellers') }}</option>
-                    @foreach (App\Seller::all() as $key => $seller)
-                        @if ($seller->user != null && $seller->user->shop != null)
-                            <option value="{{ $seller->user->id }}" @if ($seller->user->id == $seller_id) selected @endif>{{ $seller->user->shop->name }} ({{ $seller->user->name }})</option>
-                        @endif
-                    @endforeach
-                </select>
-            </div>
-            @endif
-            @if($type == 'All')
-            <div class="col-md-2 ml-auto">
-                <select class="form-control form-control-sm aiz-selectpicker mb-2 mb-md-0" id="user_id" name="user_id" onchange="sort_products()">
-                    <option value="">{{ translate('All Sellers') }}</option>
-                        @foreach (App\User::where('user_type', '=', 'admin')->orWhere('user_type', '=', 'seller')->get() as $key => $seller)
-                            <option value="{{ $seller->id }}" @if ($seller->id == $seller_id) selected @endif>{{ $seller->name }}</option>
-                        @endforeach
-                </select>
-            </div>
-            @endif
             <div class="col-md-2 ml-auto">
                 <select class="form-control form-control-sm aiz-selectpicker mb-2 mb-md-0" name="type" id="type" onchange="sort_products()">
                     <option value="">{{ translate('Sort By') }}</option>
@@ -89,18 +65,10 @@
                             </div>
                         </th>
                         <!--<th data-breakpoints="lg">#</th>-->
-                        <th>{{translate('Name')}}</th>
                         <th>{{translate('Code')}}</th>
-                        @if($type == 'Seller' || $type == 'All')
-                            <th data-breakpoints="lg">{{translate('Added By')}}</th>
-                        @endif
-                        <th data-breakpoints="sm">{{translate('Info')}}</th>
-                        <th data-breakpoints="md">{{translate('Total Stock')}}</th>
-                        <th data-breakpoints="lg">{{translate('Todays Deal')}}</th>
+                        <th>{{translate('Name')}}</th>
+                        <th data-breakpoints="lg">{{translate('Added By')}}</th>
                         <th data-breakpoints="lg">{{translate('Published')}}</th>
-                        @if(get_setting('product_approve_by_admin') == 1 && $type == 'Seller')
-                            <th data-breakpoints="lg">{{translate('Approved')}}</th>
-                        @endif
                         <th data-breakpoints="lg">{{translate('Featured')}}</th>
                         <th data-breakpoints="sm" class="text-right">{{translate('Options')}}</th>
                     </tr>
@@ -118,6 +86,9 @@
                             </div>
                         </td>
                         <td>
+                            <span>{{ $product->uid_code; }}</span>
+                        </td>
+                        <td>
                             <div class="row gutters-5 w-200px w-md-300px mw-100">
                                 <div class="col-auto">
                                     <img src="{{ uploaded_asset($product->thumbnail_img)}}" alt="Image" class="size-50px img-fit">
@@ -127,56 +98,13 @@
                                 </div>
                             </div>
                         </td>
-                        <td>
-                            <span>{{ $product->uid_code; }}</span>
-                        </td>
-                        @if($type == 'Seller' || $type == 'All')
-                            <td>{{ $product->user->name }}</td>
-                        @endif
-                        <td>
-                            <strong>{{translate('Num of Sale')}}:</strong> {{ $product->num_of_sale }} {{translate('times')}} </br>
-                            <strong>{{translate('Base Price')}}:</strong> {{ single_price($product->unit_price) }} </br>
-                            <strong>{{translate('Rating')}}:</strong> {{ $product->rating }} </br>
-                        </td>
-                        <td>
-                            @php
-                                $qty = 0;
-                                if($product->variant_product) {
-                                    foreach ($product->stocks as $key => $stock) {
-                                        $qty += $stock->qty;
-                                        echo $stock->variant.' - '.$stock->qty.'<br>';
-                                    }
-                                }
-                                else {
-                                    //$qty = $product->current_stock;
-                                    $qty = optional($product->stocks->first())->qty;
-                                    echo $qty;
-                                }
-                            @endphp
-                            @if($qty <= $product->low_stock_quantity)
-                                <span class="badge badge-inline badge-danger">Low</span>
-                            @endif
-                        </td>
-                        <td>
-                            <label class="aiz-switch aiz-switch-success mb-0">
-                                <input onchange="update_todays_deal(this)" value="{{ $product->id }}" type="checkbox" <?php if ($product->todays_deal == 1) echo "checked"; ?> >
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
+                        <td>{{ $product->user->name }}</td>
                         <td>
                             <label class="aiz-switch aiz-switch-success mb-0">
                                 <input onchange="update_published(this)" value="{{ $product->id }}" type="checkbox" <?php if ($product->published == 1) echo "checked"; ?> >
                                 <span class="slider round"></span>
                             </label>
                         </td>
-                        @if(get_setting('product_approve_by_admin') == 1 && $type == 'Seller')
-                            <td>
-                                <label class="aiz-switch aiz-switch-success mb-0">
-                                    <input onchange="update_approved(this)" value="{{ $product->id }}" type="checkbox" <?php if ($product->approved == 1) echo "checked"; ?> >
-                                    <span class="slider round"></span>
-                                </label>
-                            </td>
-                        @endif
                         <td>
                             <label class="aiz-switch aiz-switch-success mb-0">
                                 <input onchange="update_featured(this)" value="{{ $product->id }}" type="checkbox" <?php if ($product->featured == 1) echo "checked"; ?> >

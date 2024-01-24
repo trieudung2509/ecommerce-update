@@ -8,9 +8,7 @@
                     <div class="hero-content text-center">
                         <h3 class="text-white mb-0 mt-3">I'M Dung Beta</h3>
                         <h1 class="text-white text-capitalize mb-3"><span class="base-color">A  </span> <span class="element" data-elements="UI Designer.,Web Designer.,Web Developer."></span></h1>
-                        <p class=" mx-auto mt-4 text-white">
-                            
-                        </p>
+                        <p class=" mx-auto text-white">I Work, You Like !!!</p>
                     </div>
                 </div>
             </div>
@@ -106,31 +104,53 @@
                                     </div>
                                     <div class="skillbar clearfix " data-percent="85%">
                                         <div class="skillbar-title"><span>CSS</span></div>
+                                        <div class="skillbar-bar fill-skillbar" style="background-color: rgb(251, 221, 98);"></div>
+                                        <div class="skill-bar-percent">85%</div>
+                                    </div>
+                                    <div class="skillbar clearfix" data-percent="90%">
+                                        <div class="skillbar-title"><span>Javascript</span></div>
                                         <div class="skillbar-bar fill-skillbar"></div>
+                                        <div class="skill-bar-percent">90%</div>
+                                    </div>
+                                    <div class="skillbar clearfix " data-percent="85%">
+                                        <div class="skillbar-title"><span>React js</span></div>
+                                        <div class="skillbar-bar fill-skillbar"  style="background-color: rgb(251, 221, 98);"></div>
                                         <div class="skill-bar-percent">85%</div>
                                     </div>
                                     <div class="skillbar clearfix" data-percent="80%">
-                                        <div class="skillbar-title"><span>PHP</span></div>
-                                        <div class="skillbar-bar fill-skillbar"></div>
+                                        <div class="skillbar-title"><span>UI/UX Designer</span></div>
+                                        <div class="skillbar-bar fill-skillbar" style="background-color: rgb(251, 221, 98);"></div>
                                         <div class="skill-bar-percent">80%</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="skill-box">
-                                    <div class="skillbar clearfix " data-percent="85%">
-                                        <div class="skillbar-title"><span>angular js</span></div>
-                                        <div class="skillbar-bar fill-skillbar"></div>
-                                        <div class="skill-bar-percent">90%</div>
-                                    </div>
-                                    <div class="skillbar clearfix" data-percent="95%">
-                                        <div class="skillbar-title"><span>javascript</span></div>
-                                        <div class="skillbar-bar fill-skillbar"></div>
-                                        <div class="skill-bar-percent">95%</div>
-                                    </div>
                                     <div class="skillbar clearfix" data-percent="80%">
-                                        <div class="skillbar-title"><span>wordpress</span></div>
-                                        <div class="skillbar-bar fill-skillbar"></div>
+                                        <div class="skillbar-title"><span>PHP</span></div>
+                                        <div class="skillbar-bar fill-skillbar" style="background-color: rgb(251, 221, 98);"></div>
+                                        <div class="skill-bar-percent">80%</div>
+                                    </div>
+
+                                    <div class="skillbar clearfix" data-percent="70%">
+                                        <div class="skillbar-title"><span>Laravel</span></div>
+                                        <div class="skillbar-bar fill-skillbar" style="background-color: rgb(251, 221, 98);"></div>
+                                        <div class="skill-bar-percent">70%</div>
+                                    </div>
+                                   
+                                    <div class="skillbar clearfix" data-percent="70%">
+                                        <div class="skillbar-title"><span>Wordpress</span></div>
+                                        <div class="skillbar-bar fill-skillbar" style="background-color: rgb(251, 221, 98);"></div>
+                                        <div class="skill-bar-percent">70%</div>
+                                    </div>
+                                    <div class="skillbar clearfix" data-percent="50%">
+                                        <div class="skillbar-title"><span>C#</span></div>
+                                        <div class="skillbar-bar fill-skillbar" style="background-color: rgb(255, 83, 128);"></div>
+                                        <div class="skill-bar-percent">50%</div>
+                                    </div>
+                                    <div class="skillbar clearfix" data-percent="70%">
+                                        <div class="skillbar-title"><span>Other Skill (Nginx, Docker...)</span></div>
+                                        <div class="skillbar-bar fill-skillbar" style="background-color: rgb(251, 221, 98);"></div>
                                         <div class="skill-bar-percent">70%</div>
                                     </div>
                                 </div>
@@ -576,92 +596,32 @@
                 </div>
             </div>
             <div class="row">
-                <!--  Item 01 -->
-                <div class="col-lg-4">
-                    <div class="blog-item box-border">
-                        <div class="blog-image">
-                            <div class="blog-intro">
-                                <img src="{{ static_asset('assets/frontend/img/blog-01.jpg') }}" alt="/">
+                @if (count($blogs) > 0)
+                    @foreach($blogs as $blog)
+                    <!--  Item 01 -->
+                    <div class="col-lg-4">
+                        <div class="blog-item box-border">
+                            <div class="blog-image">
+                                <div class="blog-intro">
+                                    <img src="{{ uploaded_asset($blog->banner)}}" alt="{{ $blog->title }}">
+                                </div>
                             </div>
-                        </div>
-                        <div class="blog-content">
-                            <ul class="list-inline mt-4">
-                                <li class="list-inline-item">
-                                    <i class="lni-calendar base-color"></i>
-                                    <span class="text-muted">June 02, 2020 </span>
-                                </li>
-                                <li class="list-inline-item">
-                                    <i class="lni-comment base-color"></i>
-                                    <span class="text-muted">5</span>
-                                </li>
-                            </ul>
-                            <h6 class="mb-3"><a class="text-dark" href="javascript:void(0)" target="_blank" data-toggle="modal" data-target="#blog-single"> Be Your Best Version</a></h6>
-                            <p class="text-dark">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore.</p>
-                            <div class="blog-link">
-                                <a class="base-color" href="javascript:void(0)" target="_blank" data-toggle="modal" data-target="#blog-single">Read More...</a>
+                            <div class="blog-content">
+                                <h6 class="mb-3 mt-4"><a class="text-dark" href="{{ route('blog.details',['slug' => $blog->slug]) }}"> {{ $blog->title }}</a></h6>
+                                <p class="text-dark text-wrap">{{ $blog->short_description }}</p>
+                                <div class="blog-link">
+                                    <a class="base-color" href="{{ route('blog.details',['slug' => $blog->slug]) }}">Read More...</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!--  Item 02 -->
-                <div class="col-lg-4">
-                    <div class="blog-item box-border">
-                        <div class="blog-image">
-                            <div class="blog-intro">
-                                <img src="{{ static_asset('assets/frontend/img/blog-02.jpg') }}" alt="/">
-                            </div>
-                        </div>
-                        <div class="blog-content">
-                            <ul class="list-inline mt-4">
-                                <li class="list-inline-item">
-                                    <i class="lni-calendar base-color"></i>
-                                    <span class="text-muted">June 08, 2020 </span>
-                                </li>
-                                <li class="list-inline-item">
-                                    <i class="lni-comment base-color"></i>
-                                    <span class="text-muted">3</span>
-                                </li>
-                            </ul>
-                            <h6 class="mb-3"><a class="text-dark" href="javascript:void(0)" target="_blank" data-toggle="modal" data-target="#blog-single"> 5 Tips In UI/UX Web Design</a></h6>
-                            <p class="text-dark">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore.</p>
-                            <div class="blog-link">
-                                <a class="base-color" href="javascript:void(0)" target="_blank" data-toggle="modal" data-target="#blog-single">Read More...</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--  Item 03 -->
-                <div class="col-lg-4">
-                    <div class="blog-item box-border">
-                        <div class="blog-image">
-                            <div class="blog-intro">
-                                <img src="{{ static_asset('assets/frontend/img/blog-03.jpg') }}" alt="/">
-                            </div>
-                        </div>
-                        <div class="blog-content">
-                            <ul class="list-inline mt-4">
-                                <li class="list-inline-item">
-                                    <i class="lni-calendar base-color"></i>
-                                    <span class="text-muted">June 12, 2020 </span>
-                                </li>
-                                <li class="list-inline-item">
-                                    <i class="lni-comment base-color"></i>
-                                    <span class="text-muted">8</span>
-                                </li>
-                            </ul>
-                            <h6 class="mb-3"><a class="text-dark" href="javascript:void(0)" target="_blank" data-toggle="modal" data-target="#blog-single"> Write Your Dreams</a></h6>
-                            <p class="text-dark">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore.</p>
-                            <div class="blog-link">
-                                <a class="base-color" href="javascript:void(0)" target="_blank" data-toggle="modal" data-target="#blog-single">Read More...</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    @endforeach
+                @endif
             </div>
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="button-border">
-                        <a href="blog.html" class="pill-button">View More</a>
+                        <a href="{{ route('blog') }}" class="pill-button">View More</a>
                     </div>
                 </div>
             </div>
@@ -733,7 +693,7 @@
                             </div>
                             <div class="col-lg-6 form-item">
                                 <div class="form-group">
-                                    <input name="email" id="email" type="email" class="form-control" placeholder="Your Email*" required >
+                                    <input name="phone" id="phone" type="text" class="form-control" placeholder="Your Phone*" required >
                                 </div>
                             </div>
                             <div class="col-12 form-item">
@@ -761,12 +721,68 @@
                     </form>
                 </div>
             </div>
-            <div class="row copy-right">
-                <div class="col-12 text-center text-dark">
-                    <p>Copyright © 2019. Template has been designed by <span class="base-color">Retrina</span></p>
-                </div>
-            </div>
         </div>
     </section>
     <!--  Contact End  -->
+    @endsection
+    @section('script')
+        <script>
+            function sendEmail() {
+                "use strict";
+                var name     = $('#name').val();
+                var phone    = $('#phone').val();
+                var subject  = $('#subject').val();
+                var comments = $('#comments').val();
+
+                if (!name) {
+                    $('#message').toast('show').addClass('bg-danger').removeClass('bg-success');
+                    $('.toast-body').html('Name is required');
+                } else if(!phone){
+                    $('#message').toast('show').addClass('bg-danger').removeClass('bg-success');
+                    $('.toast-body').html('Phone is required');
+                } else if(!subject){
+                    $('#message').toast('show').addClass('bg-danger').removeClass('bg-success');
+                    $('.toast-body').html('Subject is required');
+                } else if(!comments){
+                    $('#message').toast('show').addClass('bg-danger').removeClass('bg-success');
+                    $('.toast-body').html('Comments is required');
+                } else {
+                    $.ajax({
+                        type: 'POST',
+                        data: $("#contactForm").serialize(),
+                        url:  "{{ route('contact.message') }}",
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        beforeSend: function() {
+                            $('#submit-btn').html('<span class="spinner-border spinner-border-sm"></span> Loading..');
+                        },
+                        success: function(data) {
+                            $('#submit-btn').html('Submit');
+                            // var myObj = JSON.parse(data);
+                            const myObj = data;
+                            if(myObj['status']=='Congratulation'){
+                                $('#message').toast('show').addClass('bg-success').removeClass('bg-danger bg-warning');
+                                $('.toast-body').html('<strong>'+ myObj['status'] +' : </strong> '+ myObj['message']);
+                                $('#name').val("");
+                                $('#phone').val("");
+                                $('#subject').val("");
+                                $('#comments').val("");
+                            }else if(myObj['status']=='Error'){
+                                $('#message').toast('show').addClass('bg-danger').removeClass('bg-success bg-warning');
+                                $('.toast-body').html('<strong>'+ myObj['status'] +' : </strong> '+ myObj['message']);
+                            }else if(myObj['status']=='Warning'){
+                                $('#message').toast('show').addClass('bg-warning').removeClass('bg-success bg-danger');
+                                $('.toast-body').html('<strong>'+ myObj['status'] +' : </strong> '+ myObj['message']);
+                            }
+                        },
+                        error: function(xhr) {
+                            $('#submit-btn').html('Submit');
+                            $('#message').toast('show').addClass('bg-danger').removeClass('bg-success bg-warning');
+                            $('.toast-body').html('<strong> Error : </strong> Something went wrong, Please try again.');
+                        },
+                    });
+                }
+                }
+        </script>
     @endsection

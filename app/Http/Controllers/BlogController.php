@@ -170,6 +170,9 @@ class BlogController extends Controller
     
     public function blog_details($slug) {
         $blog = Blog::where('slug', $slug)->first();
+        if ($blog == null) {
+            abort(404);
+        }
         return view("frontend.blog.details", compact('blog'));
     }
 }

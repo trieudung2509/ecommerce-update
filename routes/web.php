@@ -344,6 +344,7 @@ Route::post('/aamarpay/fail','AamarpayController@fail')->name('aamarpay.fail');
 Route::get('/blog', 'BlogController@all_blog')->name('blog');
 Route::get('/blog/{slug}', 'BlogController@blog_details')->name('blog.details');
 
+Route::post('/contact/contact-message', 'ContactController@contact')->name('contact.message');
 
 //mobile app balnk page for webview
 Route::get('/mobile-page/{slug}', 'PageController@mobile_custom_page')->name('mobile.custom-pages');
